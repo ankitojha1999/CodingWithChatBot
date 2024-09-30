@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task Management App</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-100">
+    <nav class="bg-blue-500 p-4 text-white">
+        <div class="container mx-auto flex justify-between">
+            <div>
+                <a href="{{ url_for('index') }}" class="mr-4">Home</a>
+                {% if 'user_id' in session %}
+                    <a href="{{ url_for('create') }}" class="mr-4">Create Task</a>
+                    <a href="{{ url_for('logout') }}">Logout</a>
+                {% else %}
+                    <a href="{{ url_for('login') }}" class="mr-4">Login</a>
+                    <a href="{{ url_for('register') }}">Register</a>
+                {% endif %}
+            </div>
+        </div>
+    </nav>
+    <div class="container mx-auto mt-8">
+        {% block content %}{% endblock %}
+    </div>
+</body>
+</html>

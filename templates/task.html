@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1 class="text-2xl font-bold mb-4">{{ task.title if task else 'Create Task' }}</h1>
+<form method="post" class="bg-white shadow-md rounded-lg p-4">
+    <div class="mb-4">
+        <label for="title" class="block text-gray-700">Title:</label>
+        <input type="text" id="title" name="title" value="{{ task.title if task else '' }}" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm" required>
+    </div>
+    <div class="mb-4">
+        <label for="description" class="block text-gray-700">Description:</label>
+        <textarea id="description" name="description" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm">{{ task.description if task else '' }}</textarea>
+    </div>
+    <div class="mb-4">
+        <label for="due_date" class="block text-gray-700">Due Date:</label>
+        <input type="date" id="due_date" name="due_date" value="{{ task.due_date if task else '' }}" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm">
+    </div>
+    <div class="mb-4">
+        <label for="priority" class="block text-gray-700">Priority:</label>
+        <select id="priority" name="priority" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm">
+            <option value="Low" {% if task and task.priority == 'Low' %}selected{% endif %}>Low</option>
+            <option value="Medium" {% if task and task.priority == 'Medium' %}selected{% endif %}>Medium</option>
+            <option value="High" {% if task and task.priority == 'High' %}selected{% endif %}>High</option>
+        </select>
+    </div>
+    <div class="mb-4">
+        <label for="category" class="block text-gray-700">Category:</label>
+        <input type="text" id="category" name="category" value="{{ task.category if task else '' }}" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm">
+    </div>
+    <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded-md">Save</button>
+</form>
+{% endblock %}
